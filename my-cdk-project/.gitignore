@@ -1,0 +1,23 @@
+*.swp
+package-lock.json
+__pycache__
+.pytest_cache
+*.egg-info
+
+# CDK asset staging directory
+.cdk.staging
+
+# Ignore Python compiled files
+*.pyc
+__pycache__/
+
+# Ignore CDK output files
+cdk.out/
+cdk.context.json
+
+# Ignore virtual environments (if using)
+myenv/
+venv/
+
+# Ignore node_modules if you're using npm
+node_modules/
