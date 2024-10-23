@@ -30,7 +30,7 @@ def lambda_handler(event, context):
                 cursor.execute(sql, (user_id, message))
                 conn.commit()
             return {'statusCode': 200,
-                    'body': json.dumps(f"POST received: userid: {user_id}, message: {message}")
+                    'body': json.dumps(f"POST received: User ID: {user_id}, Message: {message}")
                     }
         except Exception as e:
             return {'statusCode': 500,
@@ -53,7 +53,7 @@ def lambda_handler(event, context):
                 message = result[0]
                 return {
                     "statusCode": 200,
-                    "body": json.dumps(f"The message of userid {user_id}: {message}")
+                    "body": json.dumps(f"The message of userId {user_id}: {message}")
                 }
             else:
                 return {

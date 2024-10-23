@@ -1,13 +1,5 @@
-from aws_cdk import aws_lambda, aws_apigateway, aws_rds as rds, aws_ec2, Stack
+from aws_cdk import (aws_lambda, aws_apigateway, aws_rds as rds, aws_ec2, aws_secretsmanager as secretsmanager, aws_iam as iam, Stack)
 from constructs import Construct
-
-myvpc = ""
-myapi = ""
-mydb = ""
-DB_HOST = ""
-DB_NAME = mydb
-DB_USER = ""
-DB_PASSWORD = ""
 
 class MyCdkProjectStack(Stack):
 
@@ -15,21 +7,40 @@ class MyCdkProjectStack(Stack):
         super().__init__(scope, id, **kwargs)
 
         # Define VPC (if needed for RDS)
-        vpc = aws_ec2.Vpc(self, myvpc, max_azs=2, nat_gateways=1)
+        vpc = aws_ec2.Vpc(self, "MyVpc", max_azs=2, nat_gateways=1)
+
+        # Create an RDS credentials secret in AWS Secrets Manager
+        db_credentials_secret = secretsmanager.Secret(self, "DBCredentialsSecret",
+            secret_name="rds-credentials",
+            generate_secret_string=secretsmanager.SecretStringGenerator(
+                exclude_punctuation=True,
+                include_space=False,
+                generate_string_key="password",
+                secret_string_template='{"username":"admin"}'
+            )
+        )
 
         # Define RDS Database
         db_instance = rds.DatabaseInstance(self, "MyRdsInstance",
-                                          engine=rds.DatabaseInstanceEngine.mysql(version=rds.MysqlEngineVersion.VER_8_0_39),
-                                          instance_type=aws_ec2.InstanceType.of(aws_ec2.InstanceClass.BURSTABLE3, aws_ec2.InstanceSize.MICRO),
-                                          vpc=vpc,
-                                          multi_az=False,
-                                          allocated_storage=20,
-                                          storage_type=rds.StorageType.GP2,
-                                          deletion_protection=False,
-                                          max_allocated_storage=100,
-                                          database_name=mydb,
-                                          #removal_policy=RemovalPolicy.DESTROY
-                                          )
+                                engine=rds.DatabaseInstanceEngine.mysql(version=rds.MysqlEngineVersion.VER_8_0_39),
+                                instance_type=aws_ec2.InstanceType.of(aws_ec2.InstanceClass.BURSTABLE3, aws_ec2.InstanceSize.MICRO),
+                                vpc=vpc,
+                                multi_az=False,
+                                allocated_storage=20,
+                                storage_type=rds.StorageType.GP2,
+                                deletion_protection=False,
+                                max_allocated_storage=100,
+                                database_name='my_db',
+                                credentials=rds.Credentials.from_secret(db_credentials_secret)
+                            )
+        
+        # Create an IAM user
+        #lambda_user = iam.User(self, "LambdaUser")
+        # Attach a policy to the user (customize this according to your needs)
+        #lambda_user.add_to_policy(iam.PolicyStatement(
+        #    actions=["rds:DescribeDBInstances", "rds:Connect"],
+        #    resources=["*"],  # You can specify resources more granularly
+        #))
 
         # Define Lambda function
         lambda_fn = aws_lambda.Function(self, "MyFunction",
@@ -37,19 +48,25 @@ class MyCdkProjectStack(Stack):
             handler="lambda_function.lambda_handler",
             code=aws_lambda.Code.from_asset("my-cdk-project/lambda"),
             environment={
-                "DB_HOST": DB_HOST,
-                "DB_NAME": DB_NAME,
-                "DB_USER": DB_USER,
-                "DB_PASSWORD": DB_PASSWORD
-            },
+                "DB_HOST": db_instance.instance_endpoint.socket_address.split(':')[0],
+                "DB_NAME": "my_db",
+                "DB_USER": db_credentials_secret.secret_value_from_json("username").to_string(),
+                "DB_PASSWORD": db_credentials_secret.secret_value_from_json("password").to_string()
+                },
             vpc=vpc
         )
+        
+        # Attach policies to the Lambda function's role
+        lambda_fn.add_to_role_policy(iam.PolicyStatement(
+        actions=["rds:DescribeDBInstances", "rds:Connect"],
+        resources=["*"]  # Specify resources as needed
+        ))
 
         # Grant Lambda permission to access the RDS
         db_instance.connections.allow_default_port_from(lambda_fn)
 
         # Define API Gateway
-        api = aws_apigateway.LambdaRestApi(self, myapi,
+        api = aws_apigateway.LambdaRestApi(self, "MyApi",
             handler=lambda_fn,
             proxy=False
         )
