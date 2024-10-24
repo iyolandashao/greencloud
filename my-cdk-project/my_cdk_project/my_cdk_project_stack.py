@@ -1,5 +1,8 @@
 from aws_cdk import (aws_lambda, aws_apigateway, aws_rds as rds, aws_ec2, aws_secretsmanager as secretsmanager, aws_iam as iam, Stack)
 from constructs import Construct
+#import os
+#import boto3
+
 
 class MyCdkProjectStack(Stack):
 
@@ -31,15 +34,21 @@ class MyCdkProjectStack(Stack):
                                 deletion_protection=False,
                                 max_allocated_storage=100,
                                 database_name='my_db',
+                                iam_authentication=True,  # This enables IAM DB Authentication
+                                publicly_accessible=False,
                                 credentials=rds.Credentials.from_secret(db_credentials_secret)
                             )
         
         # Create an IAM user
         #lambda_user = iam.User(self, "LambdaUser")
         # Attach a policy to the user (customize this according to your needs)
+        #rds_client = boto3.client("rds")  # Create an RDS client
+        #db_instance_identifier = "database0"  # Describe the DB instance to get its resource ID
+        #response = rds_client.describe_db_instances(DBInstanceIdentifier=db_instance_identifier)
+        #dbi_resource_id = response['DBInstances'][0]['DbiResourceId'] # Extract the DB resource ID (DbiResourceId)
         #lambda_user.add_to_policy(iam.PolicyStatement(
-        #    actions=["rds:DescribeDBInstances", "rds:Connect"],
-        #    resources=["*"],  # You can specify resources more granularly
+        #    actions=["rds:Connect"],
+        #    resources=["arn:aws:rds-db:region:accountid:resourceid/special_user"],  # You can specify resources more granularly
         #))
 
         # Define Lambda function
@@ -55,11 +64,11 @@ class MyCdkProjectStack(Stack):
                 },
             vpc=vpc
         )
-        
+
         # Attach policies to the Lambda function's role
         lambda_fn.add_to_role_policy(iam.PolicyStatement(
-        actions=["rds:DescribeDBInstances", "rds:Connect"],
-        resources=["*"]  # Specify resources as needed
+        actions=["rds:Connect"],
+        resources=["arn:aws:rds-db:region:accountid:resourceid/special_user"]  # Specify resources as needed
         ))
 
         # Grant Lambda permission to access the RDS

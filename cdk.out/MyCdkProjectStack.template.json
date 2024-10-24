@@ -503,6 +503,7 @@
      "Ref": "MyRdsInstanceSubnetGroup1D56B42D"
     },
     "DeletionProtection": false,
+    "EnableIAMDatabaseAuthentication": true,
     "Engine": "mysql",
     "EngineVersion": "8.0.39",
     "MasterUserPassword": {
@@ -531,6 +532,7 @@
     },
     "MaxAllocatedStorage": 100,
     "MultiAZ": false,
+    "PubliclyAccessible": false,
     "StorageType": "gp2",
     "VPCSecurityGroups": [
      {
@@ -605,12 +607,9 @@
     "PolicyDocument": {
      "Statement": [
       {
-       "Action": [
-        "rds:DescribeDBInstances",
-        "rds:Connect"
-       ],
+       "Action": "rds:Connect",
        "Effect": "Allow",
-       "Resource": "*"
+       "Resource": "arn:aws:rds-db:us-east-2:418295685153:db-MV2OPHUTKOP2PEUN5E343DQ2H4/special_user"
       }
      ],
      "Version": "2012-10-17"
