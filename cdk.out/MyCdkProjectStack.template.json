@@ -1,6 +1,6 @@
 {
  "Resources": {
-  "vpc0f5fcf532ec74af324A7E5CEA": {
+  "MyVpcF9F0CA6F": {
    "Type": "AWS::EC2::VPC",
    "Properties": {
     "CidrBlock": "10.0.0.0/16",
@@ -10,15 +10,15 @@
     "Tags": [
      {
       "Key": "Name",
-      "Value": "MyCdkProjectStack/vpc-0f5fcf532ec74af32"
+      "Value": "MyCdkProjectStack/MyVpc"
      }
     ]
    },
    "Metadata": {
-    "aws:cdk:path": "MyCdkProjectStack/vpc-0f5fcf532ec74af32/Resource"
+    "aws:cdk:path": "MyCdkProjectStack/MyVpc/Resource"
    }
   },
-  "vpc0f5fcf532ec74af32PublicSubnet1SubnetFEF97EA5": {
+  "MyVpcPublicSubnet1SubnetF6608456": {
    "Type": "AWS::EC2::Subnet",
    "Properties": {
     "AvailabilityZone": "us-east-2a",
@@ -35,109 +35,109 @@
      },
      {
       "Key": "Name",
-      "Value": "MyCdkProjectStack/vpc-0f5fcf532ec74af32/PublicSubnet1"
+      "Value": "MyCdkProjectStack/MyVpc/PublicSubnet1"
      }
     ],
     "VpcId": {
-     "Ref": "vpc0f5fcf532ec74af324A7E5CEA"
+     "Ref": "MyVpcF9F0CA6F"
     }
    },
    "Metadata": {
-    "aws:cdk:path": "MyCdkProjectStack/vpc-0f5fcf532ec74af32/PublicSubnet1/Subnet"
+    "aws:cdk:path": "MyCdkProjectStack/MyVpc/PublicSubnet1/Subnet"
    }
   },
-  "vpc0f5fcf532ec74af32PublicSubnet1RouteTable8AFCAF5F": {
+  "MyVpcPublicSubnet1RouteTableC46AB2F4": {
    "Type": "AWS::EC2::RouteTable",
    "Properties": {
     "Tags": [
      {
       "Key": "Name",
-      "Value": "MyCdkProjectStack/vpc-0f5fcf532ec74af32/PublicSubnet1"
+      "Value": "MyCdkProjectStack/MyVpc/PublicSubnet1"
      }
     ],
     "VpcId": {
-     "Ref": "vpc0f5fcf532ec74af324A7E5CEA"
+     "Ref": "MyVpcF9F0CA6F"
     }
    },
    "Metadata": {
-    "aws:cdk:path": "MyCdkProjectStack/vpc-0f5fcf532ec74af32/PublicSubnet1/RouteTable"
+    "aws:cdk:path": "MyCdkProjectStack/MyVpc/PublicSubnet1/RouteTable"
    }
   },
-  "vpc0f5fcf532ec74af32PublicSubnet1RouteTableAssociation6DA9B97A": {
+  "MyVpcPublicSubnet1RouteTableAssociation2ECEE1CB": {
    "Type": "AWS::EC2::SubnetRouteTableAssociation",
    "Properties": {
     "RouteTableId": {
-     "Ref": "vpc0f5fcf532ec74af32PublicSubnet1RouteTable8AFCAF5F"
+     "Ref": "MyVpcPublicSubnet1RouteTableC46AB2F4"
     },
     "SubnetId": {
-     "Ref": "vpc0f5fcf532ec74af32PublicSubnet1SubnetFEF97EA5"
+     "Ref": "MyVpcPublicSubnet1SubnetF6608456"
     }
    },
    "Metadata": {
-    "aws:cdk:path": "MyCdkProjectStack/vpc-0f5fcf532ec74af32/PublicSubnet1/RouteTableAssociation"
+    "aws:cdk:path": "MyCdkProjectStack/MyVpc/PublicSubnet1/RouteTableAssociation"
    }
   },
-  "vpc0f5fcf532ec74af32PublicSubnet1DefaultRoute62353168": {
+  "MyVpcPublicSubnet1DefaultRoute95FDF9EB": {
    "Type": "AWS::EC2::Route",
    "Properties": {
     "DestinationCidrBlock": "0.0.0.0/0",
     "GatewayId": {
-     "Ref": "vpc0f5fcf532ec74af32IGWC186A45E"
+     "Ref": "MyVpcIGW5C4A4F63"
     },
     "RouteTableId": {
-     "Ref": "vpc0f5fcf532ec74af32PublicSubnet1RouteTable8AFCAF5F"
+     "Ref": "MyVpcPublicSubnet1RouteTableC46AB2F4"
     }
    },
    "DependsOn": [
-    "vpc0f5fcf532ec74af32VPCGW555478F1"
+    "MyVpcVPCGW488ACE0D"
    ],
    "Metadata": {
-    "aws:cdk:path": "MyCdkProjectStack/vpc-0f5fcf532ec74af32/PublicSubnet1/DefaultRoute"
+    "aws:cdk:path": "MyCdkProjectStack/MyVpc/PublicSubnet1/DefaultRoute"
    }
   },
-  "vpc0f5fcf532ec74af32PublicSubnet1EIP4DE0E89C": {
+  "MyVpcPublicSubnet1EIP096967CB": {
    "Type": "AWS::EC2::EIP",
    "Properties": {
     "Domain": "vpc",
     "Tags": [
      {
       "Key": "Name",
-      "Value": "MyCdkProjectStack/vpc-0f5fcf532ec74af32/PublicSubnet1"
+      "Value": "MyCdkProjectStack/MyVpc/PublicSubnet1"
      }
     ]
    },
    "Metadata": {
-    "aws:cdk:path": "MyCdkProjectStack/vpc-0f5fcf532ec74af32/PublicSubnet1/EIP"
+    "aws:cdk:path": "MyCdkProjectStack/MyVpc/PublicSubnet1/EIP"
    }
   },
-  "vpc0f5fcf532ec74af32PublicSubnet1NATGateway52033961": {
+  "MyVpcPublicSubnet1NATGatewayAD3400C1": {
    "Type": "AWS::EC2::NatGateway",
    "Properties": {
     "AllocationId": {
      "Fn::GetAtt": [
-      "vpc0f5fcf532ec74af32PublicSubnet1EIP4DE0E89C",
+      "MyVpcPublicSubnet1EIP096967CB",
       "AllocationId"
      ]
     },
     "SubnetId": {
-     "Ref": "vpc0f5fcf532ec74af32PublicSubnet1SubnetFEF97EA5"
+     "Ref": "MyVpcPublicSubnet1SubnetF6608456"
     },
     "Tags": [
      {
       "Key": "Name",
-      "Value": "MyCdkProjectStack/vpc-0f5fcf532ec74af32/PublicSubnet1"
+      "Value": "MyCdkProjectStack/MyVpc/PublicSubnet1"
      }
     ]
    },
    "DependsOn": [
-    "vpc0f5fcf532ec74af32PublicSubnet1DefaultRoute62353168",
-    "vpc0f5fcf532ec74af32PublicSubnet1RouteTableAssociation6DA9B97A"
+    "MyVpcPublicSubnet1DefaultRoute95FDF9EB",
+    "MyVpcPublicSubnet1RouteTableAssociation2ECEE1CB"
    ],
    "Metadata": {
-    "aws:cdk:path": "MyCdkProjectStack/vpc-0f5fcf532ec74af32/PublicSubnet1/NATGateway"
+    "aws:cdk:path": "MyCdkProjectStack/MyVpc/PublicSubnet1/NATGateway"
    }
   },
-  "vpc0f5fcf532ec74af32PublicSubnet2SubnetC5BF2628": {
+  "MyVpcPublicSubnet2Subnet492B6BFB": {
    "Type": "AWS::EC2::Subnet",
    "Properties": {
     "AvailabilityZone": "us-east-2b",
@@ -154,67 +154,67 @@
      },
      {
       "Key": "Name",
-      "Value": "MyCdkProjectStack/vpc-0f5fcf532ec74af32/PublicSubnet2"
+      "Value": "MyCdkProjectStack/MyVpc/PublicSubnet2"
      }
     ],
     "VpcId": {
-     "Ref": "vpc0f5fcf532ec74af324A7E5CEA"
+     "Ref": "MyVpcF9F0CA6F"
     }
    },
    "Metadata": {
-    "aws:cdk:path": "MyCdkProjectStack/vpc-0f5fcf532ec74af32/PublicSubnet2/Subnet"
+    "aws:cdk:path": "MyCdkProjectStack/MyVpc/PublicSubnet2/Subnet"
    }
   },
-  "vpc0f5fcf532ec74af32PublicSubnet2RouteTable231966B2": {
+  "MyVpcPublicSubnet2RouteTable1DF17386": {
    "Type": "AWS::EC2::RouteTable",
    "Properties": {
     "Tags": [
      {
       "Key": "Name",
-      "Value": "MyCdkProjectStack/vpc-0f5fcf532ec74af32/PublicSubnet2"
+      "Value": "MyCdkProjectStack/MyVpc/PublicSubnet2"
      }
     ],
     "VpcId": {
-     "Ref": "vpc0f5fcf532ec74af324A7E5CEA"
+     "Ref": "MyVpcF9F0CA6F"
     }
    },
    "Metadata": {
-    "aws:cdk:path": "MyCdkProjectStack/vpc-0f5fcf532ec74af32/PublicSubnet2/RouteTable"
+    "aws:cdk:path": "MyCdkProjectStack/MyVpc/PublicSubnet2/RouteTable"
    }
   },
-  "vpc0f5fcf532ec74af32PublicSubnet2RouteTableAssociation671740A7": {
+  "MyVpcPublicSubnet2RouteTableAssociation227DE78D": {
    "Type": "AWS::EC2::SubnetRouteTableAssociation",
    "Properties": {
     "RouteTableId": {
-     "Ref": "vpc0f5fcf532ec74af32PublicSubnet2RouteTable231966B2"
+     "Ref": "MyVpcPublicSubnet2RouteTable1DF17386"
     },
     "SubnetId": {
-     "Ref": "vpc0f5fcf532ec74af32PublicSubnet2SubnetC5BF2628"
+     "Ref": "MyVpcPublicSubnet2Subnet492B6BFB"
     }
    },
    "Metadata": {
-    "aws:cdk:path": "MyCdkProjectStack/vpc-0f5fcf532ec74af32/PublicSubnet2/RouteTableAssociation"
+    "aws:cdk:path": "MyCdkProjectStack/MyVpc/PublicSubnet2/RouteTableAssociation"
    }
   },
-  "vpc0f5fcf532ec74af32PublicSubnet2DefaultRoute152AAEB1": {
+  "MyVpcPublicSubnet2DefaultRoute052936F6": {
    "Type": "AWS::EC2::Route",
    "Properties": {
     "DestinationCidrBlock": "0.0.0.0/0",
     "GatewayId": {
-     "Ref": "vpc0f5fcf532ec74af32IGWC186A45E"
+     "Ref": "MyVpcIGW5C4A4F63"
     },
     "RouteTableId": {
-     "Ref": "vpc0f5fcf532ec74af32PublicSubnet2RouteTable231966B2"
+     "Ref": "MyVpcPublicSubnet2RouteTable1DF17386"
     }
    },
    "DependsOn": [
-    "vpc0f5fcf532ec74af32VPCGW555478F1"
+    "MyVpcVPCGW488ACE0D"
    ],
    "Metadata": {
-    "aws:cdk:path": "MyCdkProjectStack/vpc-0f5fcf532ec74af32/PublicSubnet2/DefaultRoute"
+    "aws:cdk:path": "MyCdkProjectStack/MyVpc/PublicSubnet2/DefaultRoute"
    }
   },
-  "vpc0f5fcf532ec74af32PrivateSubnet1SubnetAD158F9C": {
+  "MyVpcPrivateSubnet1Subnet5057CF7E": {
    "Type": "AWS::EC2::Subnet",
    "Properties": {
     "AvailabilityZone": "us-east-2a",
@@ -231,64 +231,64 @@
      },
      {
       "Key": "Name",
-      "Value": "MyCdkProjectStack/vpc-0f5fcf532ec74af32/PrivateSubnet1"
+      "Value": "MyCdkProjectStack/MyVpc/PrivateSubnet1"
      }
     ],
     "VpcId": {
-     "Ref": "vpc0f5fcf532ec74af324A7E5CEA"
+     "Ref": "MyVpcF9F0CA6F"
     }
    },
    "Metadata": {
-    "aws:cdk:path": "MyCdkProjectStack/vpc-0f5fcf532ec74af32/PrivateSubnet1/Subnet"
+    "aws:cdk:path": "MyCdkProjectStack/MyVpc/PrivateSubnet1/Subnet"
    }
   },
-  "vpc0f5fcf532ec74af32PrivateSubnet1RouteTable5E6E6F3B": {
+  "MyVpcPrivateSubnet1RouteTable8819E6E2": {
    "Type": "AWS::EC2::RouteTable",
    "Properties": {
     "Tags": [
      {
       "Key": "Name",
-      "Value": "MyCdkProjectStack/vpc-0f5fcf532ec74af32/PrivateSubnet1"
+      "Value": "MyCdkProjectStack/MyVpc/PrivateSubnet1"
      }
     ],
     "VpcId": {
-     "Ref": "vpc0f5fcf532ec74af324A7E5CEA"
+     "Ref": "MyVpcF9F0CA6F"
     }
    },
    "Metadata": {
-    "aws:cdk:path": "MyCdkProjectStack/vpc-0f5fcf532ec74af32/PrivateSubnet1/RouteTable"
+    "aws:cdk:path": "MyCdkProjectStack/MyVpc/PrivateSubnet1/RouteTable"
    }
   },
-  "vpc0f5fcf532ec74af32PrivateSubnet1RouteTableAssociationD392FFDC": {
+  "MyVpcPrivateSubnet1RouteTableAssociation56D38C7E": {
    "Type": "AWS::EC2::SubnetRouteTableAssociation",
    "Properties": {
     "RouteTableId": {
-     "Ref": "vpc0f5fcf532ec74af32PrivateSubnet1RouteTable5E6E6F3B"
+     "Ref": "MyVpcPrivateSubnet1RouteTable8819E6E2"
     },
     "SubnetId": {
-     "Ref": "vpc0f5fcf532ec74af32PrivateSubnet1SubnetAD158F9C"
+     "Ref": "MyVpcPrivateSubnet1Subnet5057CF7E"
     }
    },
    "Metadata": {
-    "aws:cdk:path": "MyCdkProjectStack/vpc-0f5fcf532ec74af32/PrivateSubnet1/RouteTableAssociation"
+    "aws:cdk:path": "MyCdkProjectStack/MyVpc/PrivateSubnet1/RouteTableAssociation"
    }
   },
-  "vpc0f5fcf532ec74af32PrivateSubnet1DefaultRouteC70DCD93": {
+  "MyVpcPrivateSubnet1DefaultRouteA8CDE2FA": {
    "Type": "AWS::EC2::Route",
    "Properties": {
     "DestinationCidrBlock": "0.0.0.0/0",
     "NatGatewayId": {
-     "Ref": "vpc0f5fcf532ec74af32PublicSubnet1NATGateway52033961"
+     "Ref": "MyVpcPublicSubnet1NATGatewayAD3400C1"
     },
     "RouteTableId": {
-     "Ref": "vpc0f5fcf532ec74af32PrivateSubnet1RouteTable5E6E6F3B"
+     "Ref": "MyVpcPrivateSubnet1RouteTable8819E6E2"
     }
    },
    "Metadata": {
-    "aws:cdk:path": "MyCdkProjectStack/vpc-0f5fcf532ec74af32/PrivateSubnet1/DefaultRoute"
+    "aws:cdk:path": "MyCdkProjectStack/MyVpc/PrivateSubnet1/DefaultRoute"
    }
   },
-  "vpc0f5fcf532ec74af32PrivateSubnet2SubnetBBFAB090": {
+  "MyVpcPrivateSubnet2Subnet0040C983": {
    "Type": "AWS::EC2::Subnet",
    "Properties": {
     "AvailabilityZone": "us-east-2b",
@@ -305,89 +305,89 @@
      },
      {
       "Key": "Name",
-      "Value": "MyCdkProjectStack/vpc-0f5fcf532ec74af32/PrivateSubnet2"
+      "Value": "MyCdkProjectStack/MyVpc/PrivateSubnet2"
      }
     ],
     "VpcId": {
-     "Ref": "vpc0f5fcf532ec74af324A7E5CEA"
+     "Ref": "MyVpcF9F0CA6F"
     }
    },
    "Metadata": {
-    "aws:cdk:path": "MyCdkProjectStack/vpc-0f5fcf532ec74af32/PrivateSubnet2/Subnet"
+    "aws:cdk:path": "MyCdkProjectStack/MyVpc/PrivateSubnet2/Subnet"
    }
   },
-  "vpc0f5fcf532ec74af32PrivateSubnet2RouteTableF1D31DA3": {
+  "MyVpcPrivateSubnet2RouteTableCEDCEECE": {
    "Type": "AWS::EC2::RouteTable",
    "Properties": {
     "Tags": [
      {
       "Key": "Name",
-      "Value": "MyCdkProjectStack/vpc-0f5fcf532ec74af32/PrivateSubnet2"
+      "Value": "MyCdkProjectStack/MyVpc/PrivateSubnet2"
      }
     ],
     "VpcId": {
-     "Ref": "vpc0f5fcf532ec74af324A7E5CEA"
+     "Ref": "MyVpcF9F0CA6F"
     }
    },
    "Metadata": {
-    "aws:cdk:path": "MyCdkProjectStack/vpc-0f5fcf532ec74af32/PrivateSubnet2/RouteTable"
+    "aws:cdk:path": "MyCdkProjectStack/MyVpc/PrivateSubnet2/RouteTable"
    }
   },
-  "vpc0f5fcf532ec74af32PrivateSubnet2RouteTableAssociation7005E81C": {
+  "MyVpcPrivateSubnet2RouteTableAssociation86A610DA": {
    "Type": "AWS::EC2::SubnetRouteTableAssociation",
    "Properties": {
     "RouteTableId": {
-     "Ref": "vpc0f5fcf532ec74af32PrivateSubnet2RouteTableF1D31DA3"
+     "Ref": "MyVpcPrivateSubnet2RouteTableCEDCEECE"
     },
     "SubnetId": {
-     "Ref": "vpc0f5fcf532ec74af32PrivateSubnet2SubnetBBFAB090"
+     "Ref": "MyVpcPrivateSubnet2Subnet0040C983"
     }
    },
    "Metadata": {
-    "aws:cdk:path": "MyCdkProjectStack/vpc-0f5fcf532ec74af32/PrivateSubnet2/RouteTableAssociation"
+    "aws:cdk:path": "MyCdkProjectStack/MyVpc/PrivateSubnet2/RouteTableAssociation"
    }
   },
-  "vpc0f5fcf532ec74af32PrivateSubnet2DefaultRoute9E150311": {
+  "MyVpcPrivateSubnet2DefaultRoute9CE96294": {
    "Type": "AWS::EC2::Route",
    "Properties": {
     "DestinationCidrBlock": "0.0.0.0/0",
     "NatGatewayId": {
-     "Ref": "vpc0f5fcf532ec74af32PublicSubnet1NATGateway52033961"
+     "Ref": "MyVpcPublicSubnet1NATGatewayAD3400C1"
     },
     "RouteTableId": {
-     "Ref": "vpc0f5fcf532ec74af32PrivateSubnet2RouteTableF1D31DA3"
+     "Ref": "MyVpcPrivateSubnet2RouteTableCEDCEECE"
     }
    },
    "Metadata": {
-    "aws:cdk:path": "MyCdkProjectStack/vpc-0f5fcf532ec74af32/PrivateSubnet2/DefaultRoute"
+    "aws:cdk:path": "MyCdkProjectStack/MyVpc/PrivateSubnet2/DefaultRoute"
    }
   },
-  "vpc0f5fcf532ec74af32IGWC186A45E": {
+  "MyVpcIGW5C4A4F63": {
    "Type": "AWS::EC2::InternetGateway",
    "Properties": {
     "Tags": [
      {
       "Key": "Name",
-      "Value": "MyCdkProjectStack/vpc-0f5fcf532ec74af32"
+      "Value": "MyCdkProjectStack/MyVpc"
      }
     ]
    },
    "Metadata": {
-    "aws:cdk:path": "MyCdkProjectStack/vpc-0f5fcf532ec74af32/IGW"
+    "aws:cdk:path": "MyCdkProjectStack/MyVpc/IGW"
    }
   },
-  "vpc0f5fcf532ec74af32VPCGW555478F1": {
+  "MyVpcVPCGW488ACE0D": {
    "Type": "AWS::EC2::VPCGatewayAttachment",
    "Properties": {
     "InternetGatewayId": {
-     "Ref": "vpc0f5fcf532ec74af32IGWC186A45E"
+     "Ref": "MyVpcIGW5C4A4F63"
     },
     "VpcId": {
-     "Ref": "vpc0f5fcf532ec74af324A7E5CEA"
+     "Ref": "MyVpcF9F0CA6F"
     }
    },
    "Metadata": {
-    "aws:cdk:path": "MyCdkProjectStack/vpc-0f5fcf532ec74af32/VPCGW"
+    "aws:cdk:path": "MyCdkProjectStack/MyVpc/VPCGW"
    }
   },
   "DBCredentialsSecretAFB45EA2": {
@@ -428,10 +428,10 @@
     "DBSubnetGroupDescription": "Subnet group for MyRdsInstance database",
     "SubnetIds": [
      {
-      "Ref": "vpc0f5fcf532ec74af32PrivateSubnet1SubnetAD158F9C"
+      "Ref": "MyVpcPrivateSubnet1Subnet5057CF7E"
      },
      {
-      "Ref": "vpc0f5fcf532ec74af32PrivateSubnet2SubnetBBFAB090"
+      "Ref": "MyVpcPrivateSubnet2Subnet0040C983"
      }
     ]
    },
@@ -451,7 +451,7 @@
      }
     ],
     "VpcId": {
-     "Ref": "vpc0f5fcf532ec74af324A7E5CEA"
+     "Ref": "MyVpcF9F0CA6F"
     }
    },
    "Metadata": {
@@ -592,10 +592,10 @@
     ]
    },
    "DependsOn": [
-    "vpc0f5fcf532ec74af32PrivateSubnet1DefaultRouteC70DCD93",
-    "vpc0f5fcf532ec74af32PrivateSubnet1RouteTableAssociationD392FFDC",
-    "vpc0f5fcf532ec74af32PrivateSubnet2DefaultRoute9E150311",
-    "vpc0f5fcf532ec74af32PrivateSubnet2RouteTableAssociation7005E81C"
+    "MyVpcPrivateSubnet1DefaultRouteA8CDE2FA",
+    "MyVpcPrivateSubnet1RouteTableAssociation56D38C7E",
+    "MyVpcPrivateSubnet2DefaultRoute9CE96294",
+    "MyVpcPrivateSubnet2RouteTableAssociation86A610DA"
    ],
    "Metadata": {
     "aws:cdk:path": "MyCdkProjectStack/MyFunction/ServiceRole/Resource"
@@ -609,7 +609,7 @@
       {
        "Action": "rds:Connect",
        "Effect": "Allow",
-       "Resource": "arn:aws:rds-db:us-east-2:418295685153:db-MV2OPHUTKOP2PEUN5E343DQ2H4/special_user"
+       "Resource": "arn:aws:rds-db:region:accountid:resourceid/special_user"
       }
      ],
      "Version": "2012-10-17"
@@ -622,10 +622,10 @@
     ]
    },
    "DependsOn": [
-    "vpc0f5fcf532ec74af32PrivateSubnet1DefaultRouteC70DCD93",
-    "vpc0f5fcf532ec74af32PrivateSubnet1RouteTableAssociationD392FFDC",
-    "vpc0f5fcf532ec74af32PrivateSubnet2DefaultRoute9E150311",
-    "vpc0f5fcf532ec74af32PrivateSubnet2RouteTableAssociation7005E81C"
+    "MyVpcPrivateSubnet1DefaultRouteA8CDE2FA",
+    "MyVpcPrivateSubnet1RouteTableAssociation56D38C7E",
+    "MyVpcPrivateSubnet2DefaultRoute9CE96294",
+    "MyVpcPrivateSubnet2RouteTableAssociation86A610DA"
    ],
    "Metadata": {
     "aws:cdk:path": "MyCdkProjectStack/MyFunction/ServiceRole/DefaultPolicy/Resource"
@@ -643,14 +643,14 @@
      }
     ],
     "VpcId": {
-     "Ref": "vpc0f5fcf532ec74af324A7E5CEA"
+     "Ref": "MyVpcF9F0CA6F"
     }
    },
    "DependsOn": [
-    "vpc0f5fcf532ec74af32PrivateSubnet1DefaultRouteC70DCD93",
-    "vpc0f5fcf532ec74af32PrivateSubnet1RouteTableAssociationD392FFDC",
-    "vpc0f5fcf532ec74af32PrivateSubnet2DefaultRoute9E150311",
-    "vpc0f5fcf532ec74af32PrivateSubnet2RouteTableAssociation7005E81C"
+    "MyVpcPrivateSubnet1DefaultRouteA8CDE2FA",
+    "MyVpcPrivateSubnet1RouteTableAssociation56D38C7E",
+    "MyVpcPrivateSubnet2DefaultRoute9CE96294",
+    "MyVpcPrivateSubnet2RouteTableAssociation86A610DA"
    ],
    "Metadata": {
     "aws:cdk:path": "MyCdkProjectStack/MyFunction/SecurityGroup/Resource"
@@ -717,10 +717,10 @@
      ],
      "SubnetIds": [
       {
-       "Ref": "vpc0f5fcf532ec74af32PrivateSubnet1SubnetAD158F9C"
+       "Ref": "MyVpcPrivateSubnet1Subnet5057CF7E"
       },
       {
-       "Ref": "vpc0f5fcf532ec74af32PrivateSubnet2SubnetBBFAB090"
+       "Ref": "MyVpcPrivateSubnet2Subnet0040C983"
       }
      ]
     }
@@ -728,10 +728,10 @@
    "DependsOn": [
     "MyFunctionServiceRoleDefaultPolicyB705ABD4",
     "MyFunctionServiceRole3C357FF2",
-    "vpc0f5fcf532ec74af32PrivateSubnet1DefaultRouteC70DCD93",
-    "vpc0f5fcf532ec74af32PrivateSubnet1RouteTableAssociationD392FFDC",
-    "vpc0f5fcf532ec74af32PrivateSubnet2DefaultRoute9E150311",
-    "vpc0f5fcf532ec74af32PrivateSubnet2RouteTableAssociation7005E81C"
+    "MyVpcPrivateSubnet1DefaultRouteA8CDE2FA",
+    "MyVpcPrivateSubnet1RouteTableAssociation56D38C7E",
+    "MyVpcPrivateSubnet2DefaultRoute9CE96294",
+    "MyVpcPrivateSubnet2RouteTableAssociation86A610DA"
    ],
    "Metadata": {
     "aws:cdk:path": "MyCdkProjectStack/MyFunction/Resource",
@@ -740,16 +740,16 @@
     "aws:asset:property": "Code"
    }
   },
-  "httpszl0eev7952executeapiuseast2amazonawscomprod6204E03C": {
+  "MyApi49610EDF": {
    "Type": "AWS::ApiGateway::RestApi",
    "Properties": {
-    "Name": "https://zl0eev7952.execute-api.us-east-2.amazonaws.com/prod"
+    "Name": "MyApi"
    },
    "Metadata": {
-    "aws:cdk:path": "MyCdkProjectStack/https:----zl0eev7952.execute-api.us-east-2.amazonaws.com--prod/Resource"
+    "aws:cdk:path": "MyCdkProjectStack/MyApi/Resource"
    }
   },
-  "httpszl0eev7952executeapiuseast2amazonawscomprodCloudWatchRole68DB612C": {
+  "MyApiCloudWatchRole2BEC1A9C": {
    "Type": "AWS::IAM::Role",
    "Properties": {
     "AssumeRolePolicyDocument": {
@@ -782,82 +782,82 @@
    "UpdateReplacePolicy": "Retain",
    "DeletionPolicy": "Retain",
    "Metadata": {
-    "aws:cdk:path": "MyCdkProjectStack/https:----zl0eev7952.execute-api.us-east-2.amazonaws.com--prod/CloudWatchRole/Resource"
+    "aws:cdk:path": "MyCdkProjectStack/MyApi/CloudWatchRole/Resource"
    }
   },
-  "httpszl0eev7952executeapiuseast2amazonawscomprodAccount34FDFC93": {
+  "MyApiAccount13882D84": {
    "Type": "AWS::ApiGateway::Account",
    "Properties": {
     "CloudWatchRoleArn": {
      "Fn::GetAtt": [
-      "httpszl0eev7952executeapiuseast2amazonawscomprodCloudWatchRole68DB612C",
+      "MyApiCloudWatchRole2BEC1A9C",
       "Arn"
      ]
     }
    },
    "DependsOn": [
-    "httpszl0eev7952executeapiuseast2amazonawscomprod6204E03C"
+    "MyApi49610EDF"
    ],
    "UpdateReplacePolicy": "Retain",
    "DeletionPolicy": "Retain",
    "Metadata": {
-    "aws:cdk:path": "MyCdkProjectStack/https:----zl0eev7952.execute-api.us-east-2.amazonaws.com--prod/Account"
+    "aws:cdk:path": "MyCdkProjectStack/MyApi/Account"
    }
   },
-  "httpszl0eev7952executeapiuseast2amazonawscomprodDeployment36F3DA32cb165cbdc556fc269b80faa04e0cc1ac": {
+  "MyApiDeploymentECB0D05E67d5a2b76bfdc1fa440c1bb6f361bf5d": {
    "Type": "AWS::ApiGateway::Deployment",
    "Properties": {
     "Description": "Automatically created by the RestApi construct",
     "RestApiId": {
-     "Ref": "httpszl0eev7952executeapiuseast2amazonawscomprod6204E03C"
+     "Ref": "MyApi49610EDF"
     }
    },
    "DependsOn": [
-    "httpszl0eev7952executeapiuseast2amazonawscomproditemsGETEF452636",
-    "httpszl0eev7952executeapiuseast2amazonawscomproditemsPOST5D79E9FF",
-    "httpszl0eev7952executeapiuseast2amazonawscomproditems0047AB66"
+    "MyApiitemsGET84EC82EC",
+    "MyApiitemsPOST85AFF4CD",
+    "MyApiitems739EA3DF"
    ],
    "Metadata": {
-    "aws:cdk:path": "MyCdkProjectStack/https:----zl0eev7952.execute-api.us-east-2.amazonaws.com--prod/Deployment/Resource"
+    "aws:cdk:path": "MyCdkProjectStack/MyApi/Deployment/Resource"
    }
   },
-  "httpszl0eev7952executeapiuseast2amazonawscomprodDeploymentStageprodD75B1C25": {
+  "MyApiDeploymentStageprodE1054AF0": {
    "Type": "AWS::ApiGateway::Stage",
    "Properties": {
     "DeploymentId": {
-     "Ref": "httpszl0eev7952executeapiuseast2amazonawscomprodDeployment36F3DA32cb165cbdc556fc269b80faa04e0cc1ac"
+     "Ref": "MyApiDeploymentECB0D05E67d5a2b76bfdc1fa440c1bb6f361bf5d"
     },
     "RestApiId": {
-     "Ref": "httpszl0eev7952executeapiuseast2amazonawscomprod6204E03C"
+     "Ref": "MyApi49610EDF"
     },
     "StageName": "prod"
    },
    "DependsOn": [
-    "httpszl0eev7952executeapiuseast2amazonawscomprodAccount34FDFC93"
+    "MyApiAccount13882D84"
    ],
    "Metadata": {
-    "aws:cdk:path": "MyCdkProjectStack/https:----zl0eev7952.execute-api.us-east-2.amazonaws.com--prod/DeploymentStage.prod/Resource"
+    "aws:cdk:path": "MyCdkProjectStack/MyApi/DeploymentStage.prod/Resource"
    }
   },
-  "httpszl0eev7952executeapiuseast2amazonawscomproditems0047AB66": {
+  "MyApiitems739EA3DF": {
    "Type": "AWS::ApiGateway::Resource",
    "Properties": {
     "ParentId": {
      "Fn::GetAtt": [
-      "httpszl0eev7952executeapiuseast2amazonawscomprod6204E03C",
+      "MyApi49610EDF",
       "RootResourceId"
      ]
     },
     "PathPart": "items",
     "RestApiId": {
-     "Ref": "httpszl0eev7952executeapiuseast2amazonawscomprod6204E03C"
+     "Ref": "MyApi49610EDF"
     }
    },
    "Metadata": {
-    "aws:cdk:path": "MyCdkProjectStack/https:----zl0eev7952.execute-api.us-east-2.amazonaws.com--prod/Default/items/Resource"
+    "aws:cdk:path": "MyCdkProjectStack/MyApi/Default/items/Resource"
    }
   },
-  "httpszl0eev7952executeapiuseast2amazonawscomproditemsGETApiPermissionMyCdkProjectStackhttpszl0eev7952executeapiuseast2amazonawscomprod368B5EF1GETitems0BE18241": {
+  "MyApiitemsGETApiPermissionMyCdkProjectStackMyApiBFA04FFBGETitems0F4B32FF": {
    "Type": "AWS::Lambda::Permission",
    "Properties": {
     "Action": "lambda:InvokeFunction",
@@ -878,11 +878,11 @@
        },
        ":execute-api:us-east-2:418295685153:",
        {
-        "Ref": "httpszl0eev7952executeapiuseast2amazonawscomprod6204E03C"
+        "Ref": "MyApi49610EDF"
        },
        "/",
        {
-        "Ref": "httpszl0eev7952executeapiuseast2amazonawscomprodDeploymentStageprodD75B1C25"
+        "Ref": "MyApiDeploymentStageprodE1054AF0"
        },
        "/GET/items"
       ]
@@ -890,10 +890,10 @@
     }
    },
    "Metadata": {
-    "aws:cdk:path": "MyCdkProjectStack/https:----zl0eev7952.execute-api.us-east-2.amazonaws.com--prod/Default/items/GET/ApiPermission.MyCdkProjectStackhttpszl0eev7952executeapiuseast2amazonawscomprod368B5EF1.GET..items"
+    "aws:cdk:path": "MyCdkProjectStack/MyApi/Default/items/GET/ApiPermission.MyCdkProjectStackMyApiBFA04FFB.GET..items"
    }
   },
-  "httpszl0eev7952executeapiuseast2amazonawscomproditemsGETApiPermissionTestMyCdkProjectStackhttpszl0eev7952executeapiuseast2amazonawscomprod368B5EF1GETitemsFAFF5484": {
+  "MyApiitemsGETApiPermissionTestMyCdkProjectStackMyApiBFA04FFBGETitems3E1619F1": {
    "Type": "AWS::Lambda::Permission",
    "Properties": {
     "Action": "lambda:InvokeFunction",
@@ -914,7 +914,7 @@
        },
        ":execute-api:us-east-2:418295685153:",
        {
-        "Ref": "httpszl0eev7952executeapiuseast2amazonawscomprod6204E03C"
+        "Ref": "MyApi49610EDF"
        },
        "/test-invoke-stage/GET/items"
       ]
@@ -922,10 +922,10 @@
     }
    },
    "Metadata": {
-    "aws:cdk:path": "MyCdkProjectStack/https:----zl0eev7952.execute-api.us-east-2.amazonaws.com--prod/Default/items/GET/ApiPermission.Test.MyCdkProjectStackhttpszl0eev7952executeapiuseast2amazonawscomprod368B5EF1.GET..items"
+    "aws:cdk:path": "MyCdkProjectStack/MyApi/Default/items/GET/ApiPermission.Test.MyCdkProjectStackMyApiBFA04FFB.GET..items"
    }
   },
-  "httpszl0eev7952executeapiuseast2amazonawscomproditemsGETEF452636": {
+  "MyApiitemsGET84EC82EC": {
    "Type": "AWS::ApiGateway::Method",
    "Properties": {
     "AuthorizationType": "NONE",
@@ -954,17 +954,17 @@
      }
     },
     "ResourceId": {
-     "Ref": "httpszl0eev7952executeapiuseast2amazonawscomproditems0047AB66"
+     "Ref": "MyApiitems739EA3DF"
     },
     "RestApiId": {
-     "Ref": "httpszl0eev7952executeapiuseast2amazonawscomprod6204E03C"
+     "Ref": "MyApi49610EDF"
     }
    },
    "Metadata": {
-    "aws:cdk:path": "MyCdkProjectStack/https:----zl0eev7952.execute-api.us-east-2.amazonaws.com--prod/Default/items/GET/Resource"
+    "aws:cdk:path": "MyCdkProjectStack/MyApi/Default/items/GET/Resource"
    }
   },
-  "httpszl0eev7952executeapiuseast2amazonawscomproditemsPOSTApiPermissionMyCdkProjectStackhttpszl0eev7952executeapiuseast2amazonawscomprod368B5EF1POSTitems22AAF940": {
+  "MyApiitemsPOSTApiPermissionMyCdkProjectStackMyApiBFA04FFBPOSTitems15B4AE1B": {
    "Type": "AWS::Lambda::Permission",
    "Properties": {
     "Action": "lambda:InvokeFunction",
@@ -985,11 +985,11 @@
        },
        ":execute-api:us-east-2:418295685153:",
        {
-        "Ref": "httpszl0eev7952executeapiuseast2amazonawscomprod6204E03C"
+        "Ref": "MyApi49610EDF"
        },
        "/",
        {
-        "Ref": "httpszl0eev7952executeapiuseast2amazonawscomprodDeploymentStageprodD75B1C25"
+        "Ref": "MyApiDeploymentStageprodE1054AF0"
        },
        "/POST/items"
       ]
@@ -997,10 +997,10 @@
     }
    },
    "Metadata": {
-    "aws:cdk:path": "MyCdkProjectStack/https:----zl0eev7952.execute-api.us-east-2.amazonaws.com--prod/Default/items/POST/ApiPermission.MyCdkProjectStackhttpszl0eev7952executeapiuseast2amazonawscomprod368B5EF1.POST..items"
+    "aws:cdk:path": "MyCdkProjectStack/MyApi/Default/items/POST/ApiPermission.MyCdkProjectStackMyApiBFA04FFB.POST..items"
    }
   },
-  "httpszl0eev7952executeapiuseast2amazonawscomproditemsPOSTApiPermissionTestMyCdkProjectStackhttpszl0eev7952executeapiuseast2amazonawscomprod368B5EF1POSTitems47F3D1B2": {
+  "MyApiitemsPOSTApiPermissionTestMyCdkProjectStackMyApiBFA04FFBPOSTitems46B28DED": {
    "Type": "AWS::Lambda::Permission",
    "Properties": {
     "Action": "lambda:InvokeFunction",
@@ -1021,7 +1021,7 @@
        },
        ":execute-api:us-east-2:418295685153:",
        {
-        "Ref": "httpszl0eev7952executeapiuseast2amazonawscomprod6204E03C"
+        "Ref": "MyApi49610EDF"
        },
        "/test-invoke-stage/POST/items"
       ]
@@ -1029,10 +1029,10 @@
     }
    },
    "Metadata": {
-    "aws:cdk:path": "MyCdkProjectStack/https:----zl0eev7952.execute-api.us-east-2.amazonaws.com--prod/Default/items/POST/ApiPermission.Test.MyCdkProjectStackhttpszl0eev7952executeapiuseast2amazonawscomprod368B5EF1.POST..items"
+    "aws:cdk:path": "MyCdkProjectStack/MyApi/Default/items/POST/ApiPermission.Test.MyCdkProjectStackMyApiBFA04FFB.POST..items"
    }
   },
-  "httpszl0eev7952executeapiuseast2amazonawscomproditemsPOST5D79E9FF": {
+  "MyApiitemsPOST85AFF4CD": {
    "Type": "AWS::ApiGateway::Method",
    "Properties": {
     "AuthorizationType": "NONE",
@@ -1061,14 +1061,14 @@
      }
     },
     "ResourceId": {
-     "Ref": "httpszl0eev7952executeapiuseast2amazonawscomproditems0047AB66"
+     "Ref": "MyApiitems739EA3DF"
     },
     "RestApiId": {
-     "Ref": "httpszl0eev7952executeapiuseast2amazonawscomprod6204E03C"
+     "Ref": "MyApi49610EDF"
     }
    },
    "Metadata": {
-    "aws:cdk:path": "MyCdkProjectStack/https:----zl0eev7952.execute-api.us-east-2.amazonaws.com--prod/Default/items/POST/Resource"
+    "aws:cdk:path": "MyCdkProjectStack/MyApi/Default/items/POST/Resource"
    }
   },
   "CDKMetadata": {
@@ -1082,14 +1082,14 @@
   }
  },
  "Outputs": {
-  "httpszl0eev7952executeapiuseast2amazonawscomprodEndpoint96E46570": {
+  "MyApiEndpoint869ABE96": {
    "Value": {
     "Fn::Join": [
      "",
      [
       "https://",
       {
-       "Ref": "httpszl0eev7952executeapiuseast2amazonawscomprod6204E03C"
+       "Ref": "MyApi49610EDF"
       },
       ".execute-api.us-east-2.",
       {
@@ -1097,7 +1097,7 @@
       },
       "/",
       {
-       "Ref": "httpszl0eev7952executeapiuseast2amazonawscomprodDeploymentStageprodD75B1C25"
+       "Ref": "MyApiDeploymentStageprodE1054AF0"
       },
       "/"
      ]
